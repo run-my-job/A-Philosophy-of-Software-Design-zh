@@ -1,10 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-    - main
-  workflow_dispatch:
+on: push
 
 # Allow one concurrent deployment
 concurrency:
@@ -13,10 +9,10 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install and Build   
+      - name: Install and Build
         run: |
           npm install
           npm run docs:build

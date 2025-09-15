@@ -1,7 +1,7 @@
 name: PR Preview
 
 on:
-  pull_request:
+  pull_request: null
 
 concurrency:
   group: 'preview-${{ github.ref }}'
@@ -9,12 +9,13 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install and Build   
-        env: 
-          BASE_URL: "/A-Philosophy-of-Software-Design-zh/pr-preview/pr-${{ github.event.pull_request.number }}/"
+      - name: Install and Build
+        env:
+          BASE_URL: "/A-Philosophy-of-Software-Design-zh/pr-preview/pr-${{ github.event.pull_request.number
+            }}/"
         run: |
           npm install
           npm run docs:build -- --base $BASE_URL
